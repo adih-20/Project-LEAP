@@ -6,4 +6,4 @@ Please do not force push/push to branch` master`, instead create your own local 
 
 **ToDo:**
 - ~~Import build structure for unity(pr welcome)~~
-- start on project!
+- Start on project!
