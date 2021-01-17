@@ -84,11 +84,12 @@ public class TerrainTexture : MonoBehaviour
             terrain.materialTemplate = height;
             scale_obj.texture = key_img;
             //keys.texture = height_key;
-            upper.text = "4247.96";
-            upperMid.text = "2696.50";
-            mid.text = "1145.03";
-            lowerMid.text = "-406.44";
-            lower.text = "-1957.91";
+
+            upper.text = "1957.91";
+            upperMid.text = "406.44";
+            mid.text = "-1145.03";
+            lowerMid.text = "-2696.50";
+            lower.text = "-4247.96";
 
             label.text = "HEIGHT";
             units.text = "m";
@@ -126,11 +127,11 @@ public class TerrainTexture : MonoBehaviour
             terrain.materialTemplate = azimuth_angle;
             scale_obj.texture = key_img;
             //keys.texture = az_angle_key;
-            upper.text = "";
-            upperMid.text = "";
-            mid.text = "";
-            lowerMid.text = "";
-            lower.text = "";
+            upper.text = "0";
+            upperMid.text = "90";
+            mid.text = "180";
+            lowerMid.text = "270";
+            lower.text = "360";
             
             label.text = "AZIMUTH TO EARTH";
             units.text = "deg";

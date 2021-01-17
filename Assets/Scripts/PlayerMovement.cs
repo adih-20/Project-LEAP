@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 3f;
-    float otherSpeed = 3f;
+    float normalSpeed = 3f;
     public float gravity = -1.6f;
 
     // sphere that checks if the player is on the ground
@@ -79,13 +79,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(Input.GetKey("z"))
         {
+            // cheat speed mode
             speed = 1000f;
         }
         else
         {
             // walking
             //Debug.Log("Walking");
-            speed = otherSpeed;
+            speed = normalSpeed;
         }
 
         // moving x (forwards, backwards, left, right)
