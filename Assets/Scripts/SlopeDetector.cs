@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlopeDetector : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class SlopeDetector : MonoBehaviour
     public float groundSlopeAngle = 0f;
     private Vector3 groundSlopeDir;
 
-    
+    public Text indicator;
 
 
     // Start is called before the first frame update
@@ -23,16 +24,22 @@ public class SlopeDetector : MonoBehaviour
     {
         RaycastHit hit;
 
+        /*
         if(Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
         {
-            Debug.Log("something");
+            //Debug.Log("something");
         }
         else
         {
-            Debug.Log("nothing");
+            //Debug.Log("nothing");
         }
+        */
 
-        Debug.Log(hit.normal);
-        Debug.Log(Vector3.Angle(hit.normal, Vector3.up));
+        //Debug.Log(hit.normal);
+        //Debug.Log(Vector3.Angle(hit.normal, Vector3.up));
+
+        Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity);
+        float slope = Vector3.Angle(hit.normal, Vector3.up);
+        indicator.text = (Mathf.Round(slope * 100)/100f).ToString();
     }
 }
