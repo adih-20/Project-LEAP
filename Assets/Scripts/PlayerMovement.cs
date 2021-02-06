@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 3f;
-    float otherSpeed = 3f;
+    float normalSpeed = 3f;
     public float gravity = -1.6f;
 
     // sphere that checks if the player is on the ground
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // IN PROGRESS - starting spherical position
     public float startLat = 0f;
     public float startLong = 0f;
-    
+
     // starting cartesian position
     public Vector3 startingPosition = new Vector3(19016.856f, -1013.409f, 13417.899f);
 
@@ -44,13 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
         // boolean for if the character is on the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        
+
         // if its on the ground and falling
         if(isGrounded)
         {
             // if jumping, when back on ground
             isJumping = false;
-            
+
             if(velocity.y < 0 && !isJumping)
             {
                 // keeps object grounded when not jumping (ex. down a slope)
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             // grounded opens the option to jump
-            if(Input.GetKeyDown("space"))
+            if((Input.GetKeyDown("space")) || (Input.GetKeyDown("joystick button 0")))
             {
                 //Debug.Log("Jumping")
                 velocity.y = jumpAcceleration;
@@ -70,12 +70,15 @@ public class PlayerMovement : MonoBehaviour
         // gets if the WASD keys are pushed down
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
-        if(Input.GetKey(KeyCode.LeftShift))
+        float xCheat = Input.GetAxis("HorizontalCheat");
+        float zCheat = Input.GetAxis("VerticalCheat");
+        //Debug.Log(x + " " + z + " " + xCheat + " " + zCheat);
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("JoystickRT") > 0)
         {
             // sprinting
-            //Debug.Log("Sprinting");
-            speed = 5f;
+
+            speed = 15f;
+            Debug.Log(speed);
         }
         else if(Input.GetKey("z"))
         {
@@ -85,11 +88,16 @@ public class PlayerMovement : MonoBehaviour
         {
             // walking
             //Debug.Log("Walking");
-            speed = otherSpeed;
+            speed = normalSpeed;
         }
 
         // moving x (forwards, backwards, left, right)
+
         Vector3 move = transform.right * x + transform.forward * z;
+        if(x == 0 && z == 0){
+          move = transform.right * xCheat + transform.forward * zCheat;
+          speed = 1000f;
+        }
         controller.Move(move * speed * Time.deltaTime);
 
         // gravity making fall down

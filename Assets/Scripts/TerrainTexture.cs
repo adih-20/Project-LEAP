@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TerrainTexture : MonoBehaviour
 {
-    
+
     public Terrain terrain;
 
     public Material moon;
@@ -13,7 +13,7 @@ public class TerrainTexture : MonoBehaviour
     public Material slope;
     public Material elevation_angle;
     public Material azimuth_angle;
-    
+    public int counter = 1;
     /*
     public RawImage keys;
     public Texture none;
@@ -103,7 +103,7 @@ public class TerrainTexture : MonoBehaviour
             mid.text = "32.5";
             lowerMid.text = "16.25";
             lower.text = "0";
-            
+
             label.text = "SLOPE";
             units.text = "deg";
         }
@@ -117,7 +117,7 @@ public class TerrainTexture : MonoBehaviour
             mid.text = "6.65";
             lowerMid.text = "5.65";
             lower.text = "4.65";
-            
+
             label.text = "ELEVATION TO EARTH";
             units.text = "deg";
         }
@@ -131,7 +131,7 @@ public class TerrainTexture : MonoBehaviour
             mid.text = "";
             lowerMid.text = "";
             lower.text = "";
-            
+
             label.text = "AZIMUTH TO EARTH";
             units.text = "deg";
         }
@@ -143,5 +143,98 @@ public class TerrainTexture : MonoBehaviour
         lowerMid.text = keyScale[3];
         lower.text = keyScale[4];
         */
+
+        if(Input.GetKeyDown("joystick button 4")){
+              if(counter != 1){
+                counter--;
+              }
+              else {
+                counter = 5;
+              }
+        } else if(Input.GetKeyDown("joystick button 5"))
+        {
+            if(counter != 5) {
+              counter++;
+            }
+            else {
+              counter = 1;
+            }
+        }
+        // Using switch statement for ease of use over long, winded if-else statements.
+        switch(counter)
+        {
+          case 1:
+                terrain.materialTemplate = moon;
+                scale_obj.texture = none_img;
+                //keys.texture = none;
+                /*
+                for(int i = 0; i < 5; i++)
+                {
+                    keyScale[i] = "";
+                }
+                */
+                upper.text = "";
+                upperMid.text = "";
+                mid.text = "";
+                lowerMid.text = "";
+                lower.text = "";
+
+                label.text = "";
+                units.text = "";
+                break;
+            case 2:
+                terrain.materialTemplate = height;
+                scale_obj.texture = key_img;
+                //keys.texture = height_key;
+                upper.text = "4247.96";
+                upperMid.text = "2696.50";
+                mid.text = "1145.03";
+                lowerMid.text = "-406.44";
+                lower.text = "-1957.91";
+
+                label.text = "HEIGHT";
+                units.text = "m";
+                break;
+            case 3:
+                terrain.materialTemplate = slope;
+                scale_obj.texture = key_img;
+                //keys.texture = slope_key;
+                upper.text = "65";
+                upperMid.text = "48.75";
+                mid.text = "32.5";
+                lowerMid.text = "16.25";
+                lower.text = "0";
+
+                label.text = "SLOPE";
+                units.text = "deg";
+                break;
+            case 4:
+                terrain.materialTemplate = elevation_angle;
+                scale_obj.texture = key_img;
+                //keys.texture = el_angle_key;
+                upper.text = "8.65";
+                upperMid.text = "7.65";
+                mid.text = "6.65";
+                lowerMid.text = "5.65";
+                lower.text = "4.65";
+
+                label.text = "ELEVATION TO EARTH";
+                units.text = "deg";
+                break;
+            case 5:
+                terrain.materialTemplate = azimuth_angle;
+                scale_obj.texture = key_img;
+                //keys.texture = az_angle_key;
+                upper.text = "";
+                upperMid.text = "";
+                mid.text = "";
+                lowerMid.text = "";
+                lower.text = "";
+
+                label.text = "AZIMUTH TO EARTH";
+                units.text = "deg";
+                break;
+            }
+
+      }
     }
-}
