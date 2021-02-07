@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     // public Vector3 startingPosition = new Vector3(19016.856f, -1013.409f, 13417.899f);
     public Vector3 startingPosition = new Vector3(13411.56194f, -1014.30895f, 19008.04084f);
 
+    //Access the CamSwitch Script as An Object ---  NEW SECTION
+    public CamSwitch c;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,69 +39,76 @@ public class PlayerMovement : MonoBehaviour
         //transform.position = new Vector3(19016.856f, -1013.409f, 13417.899f);
         transform.position = startingPosition;
         speed = 3f;
+
+        //Saying that our script object c is a going to be a object script reference of the CamSwitch Script --- NEW ADDITION
+        c = (CamSwitch)FindObjectOfType(typeof(CamSwitch));
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("New Frame -----------");
-
-        // boolean for if the character is on the ground
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        
-        // if its on the ground and falling
-        if(isGrounded)
+        //If the camMode Attribute is 1- the below will occur - Makes Player Motion independent of the Rover --- NEW SECTIOn
+        if (c.CamMode == 1)
         {
-            // if jumping, when back on ground
-            isJumping = false;
-            
-            if(velocity.y < 0 && !isJumping)
+            //Debug.Log("New Frame -----------");
+
+            // boolean for if the character is on the ground
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+            // if its on the ground and falling
+            if (isGrounded)
             {
-                // keeps object grounded when not jumping (ex. down a slope)
-                //Debug.Log("Grounded");
-                velocity.y = -10000f;
+                // if jumping, when back on ground
+                isJumping = false;
+
+                if (velocity.y < 0 && !isJumping)
+                {
+                    // keeps object grounded when not jumping (ex. down a slope)
+                    //Debug.Log("Grounded");
+                    velocity.y = -10000f;
+                }
+
+                // grounded opens the option to jump
+                if (Input.GetKeyDown("space"))
+                {
+                    //Debug.Log("Jumping")
+                    velocity.y = jumpAcceleration;
+                    isJumping = true;
+                }
             }
 
-            // grounded opens the option to jump
-            if(Input.GetKeyDown("space"))
+            // gets if the WASD keys are pushed down
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                //Debug.Log("Jumping")
-                velocity.y = jumpAcceleration;
-                isJumping = true;
+                // sprinting
+                //Debug.Log("Sprinting");
+                speed = 5f;
             }
+            else if (Input.GetKey("z"))
+            {
+                // cheat speed mode
+                speed = 1000f;
+            }
+            else
+            {
+                // walking
+                //Debug.Log("Walking");
+                speed = normalSpeed;
+            }
+
+            // moving x (forwards, backwards, left, right)
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * speed * Time.deltaTime);
+
+            // gravity making fall down
+            velocity.y -= gravity * Time.deltaTime;
+            //Debug.Log(velocity.y);
+            // multiply by 0.5?
+            controller.Move(velocity * Time.deltaTime);
+
         }
-
-        // gets if the WASD keys are pushed down
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            // sprinting
-            //Debug.Log("Sprinting");
-            speed = 5f;
-        }
-        else if(Input.GetKey("z"))
-        {
-            // cheat speed mode
-            speed = 1000f;
-        }
-        else
-        {
-            // walking
-            //Debug.Log("Walking");
-            speed = normalSpeed;
-        }
-
-        // moving x (forwards, backwards, left, right)
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
-
-        // gravity making fall down
-        velocity.y -= gravity * Time.deltaTime;
-        //Debug.Log(velocity.y);
-        // multiply by 0.5?
-        controller.Move(velocity * Time.deltaTime);
-
     }
 }
