@@ -70,7 +70,8 @@ public class TerrainTexture : MonoBehaviour
     {
  
       runtime += 4*Time.deltaTime;
-      if(Input.GetKeyDown("joystick button 4")
+      if(Input.GetKeyDown("joystick button 4"))
+      {
             if(counter != 1){
               counter--;
             }
