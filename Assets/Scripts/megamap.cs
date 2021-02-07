@@ -8,7 +8,7 @@ public class megamap : MonoBehaviour
 
     public Texture none;
     public Texture arr;
-    
+
     public bool isBig = false;
 
     public RawImage arrow;
@@ -23,14 +23,14 @@ public class megamap : MonoBehaviour
         this.GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2(125, 125);
         arrow.GetComponent<RawImage>().texture = arr;
     }
-    
+
     // Update is called once per frame
     public GameObject canvas;
     void Update()
     {
         float x = canvas.transform.position.x;
         float y = canvas.transform.position.y;
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) || (Input.GetKeyDown("joystick button 7")))
         {
             if(this.GetComponent<RawImage>().rectTransform.rect.width == 125)
             {
