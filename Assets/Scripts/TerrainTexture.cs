@@ -13,6 +13,7 @@ public class TerrainTexture : MonoBehaviour
     public Material slope;
     public Material elevation_angle;
     public Material azimuth_angle;
+    public Material illumination;
     public int counter = 1;
     /*
     public RawImage keys;
@@ -59,7 +60,42 @@ public class TerrainTexture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("1"))
+      if(Input.GetKeyDown("joystick button 4")){
+            if(counter != 1){
+              counter--;
+            }
+            else {
+              counter = 6;
+            }
+      } else if(Input.GetKeyDown("joystick button 5"))
+      {
+          if(counter != 6) {
+            counter++;
+          }
+          else {
+            counter = 1;
+          }
+      }
+      if(Input.GetKeyDown("f1")){
+        counter = 1;
+      }
+      else if(Input.GetKeyDown("f2")){
+        counter = 2;
+      }
+      else if(Input.GetKeyDown("f3")){
+        counter = 3;
+      }
+      else if(Input.GetKeyDown("f4")){
+        counter = 4;
+      }
+      else if(Input.GetKeyDown("f5")){
+        counter = 5;
+      }
+      else if(Input.GetKeyDown("f6")){
+        counter = 6;
+      }
+
+        if(counter == 1)
         {
             terrain.materialTemplate = moon;
             scale_obj.texture = none_img;
@@ -79,7 +115,7 @@ public class TerrainTexture : MonoBehaviour
             label.text = "";
             units.text = "";
         }
-        else if(Input.GetKeyDown("2"))
+        else if(counter == 2)
         {
             terrain.materialTemplate = height;
             scale_obj.texture = key_img;
@@ -93,7 +129,7 @@ public class TerrainTexture : MonoBehaviour
             label.text = "HEIGHT";
             units.text = "m";
         }
-        else if(Input.GetKeyDown("3"))
+        else if(counter == 3)
         {
             terrain.materialTemplate = slope;
             scale_obj.texture = key_img;
@@ -107,7 +143,7 @@ public class TerrainTexture : MonoBehaviour
             label.text = "SLOPE";
             units.text = "deg";
         }
-        else if(Input.GetKeyDown("4"))
+        else if(counter == 4)
         {
             terrain.materialTemplate = elevation_angle;
             scale_obj.texture = key_img;
@@ -121,7 +157,7 @@ public class TerrainTexture : MonoBehaviour
             label.text = "ELEVATION TO EARTH";
             units.text = "deg";
         }
-        else if(Input.GetKeyDown("5"))
+        else if(counter == 5)
         {
             terrain.materialTemplate = azimuth_angle;
             scale_obj.texture = key_img;
@@ -135,6 +171,20 @@ public class TerrainTexture : MonoBehaviour
             label.text = "AZIMUTH TO EARTH";
             units.text = "deg";
         }
+        else if(counter == 6)
+        {
+          terrain.materialTemplate = illumination;
+          scale_obj.texture = none_img;
+          //keys.texture = az_angle_key;
+          upper.text = "";
+          upperMid.text = "";
+          mid.text = "";
+          lowerMid.text = "";
+          lower.text = "";
+
+          label.text = "ILLUMINATION";
+          units.text = "";
+        }
 
         /*
         upper.text = keyScale[0];
@@ -144,24 +194,9 @@ public class TerrainTexture : MonoBehaviour
         lower.text = keyScale[4];
         */
 
-        if(Input.GetKeyDown("joystick button 4")){
-              if(counter != 1){
-                counter--;
-              }
-              else {
-                counter = 5;
-              }
-        } else if(Input.GetKeyDown("joystick button 5"))
-        {
-            if(counter != 5) {
-              counter++;
-            }
-            else {
-              counter = 1;
-            }
-        }
-        // Using switch statement for ease of use over long, winded if-else statements.
-        switch(counter)
+        // Using switch-case statement for ease of use over long, winded if-else statements.
+        // THIS BREAKS KEYBOARD!
+        /*switch(counter)
         {
           case 1:
                 terrain.materialTemplate = moon;
@@ -172,7 +207,7 @@ public class TerrainTexture : MonoBehaviour
                 {
                     keyScale[i] = "";
                 }
-                */
+                */ /*
                 upper.text = "";
                 upperMid.text = "";
                 mid.text = "";
@@ -234,7 +269,9 @@ public class TerrainTexture : MonoBehaviour
                 label.text = "AZIMUTH TO EARTH";
                 units.text = "deg";
                 break;
-            }
+            default:
+                break;
+            } */
 
       }
     }
