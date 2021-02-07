@@ -29,7 +29,7 @@ public class minimapcontroller : MonoBehaviour
         
         if (Input.GetKey("q"))
         {
-            if (size < 20000)
+            if (size < 30000)
             {
                 this.GetComponent<Camera>().orthographicSize = size + 100;
             }
@@ -43,7 +43,7 @@ public class minimapcontroller : MonoBehaviour
         }
         if (big && Input.GetKey("j"))
         {
-            x -= 10000 * (75/this.GetComponent<Camera>().orthographicSize);
+            x -= 10000 * (75f/this.GetComponent<Camera>().orthographicSize);
             if (this.GetComponent<Camera>().transform.position.x < -60000)
             {
                 x += 10000 * (75/this.GetComponent<Camera>().orthographicSize);

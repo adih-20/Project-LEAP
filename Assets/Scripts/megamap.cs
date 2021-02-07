@@ -35,7 +35,7 @@ public class megamap : MonoBehaviour
             if(this.GetComponent<RawImage>().rectTransform.rect.width == 125)
             {
                 //this.GetComponent<RawImage>().rectTransform.position = new Vector2(260, 277);
-                this.GetComponent<RawImage>().rectTransform.position = new Vector2(x,y);
+                this.GetComponent<RawImage>().rectTransform.position = new Vector2(x+85,y);
                 //this.GetComponent<RawImage>().rectTransform.position = new Vector2(336,159);
                 this.GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2(425, 425);
                 isBig = true;
