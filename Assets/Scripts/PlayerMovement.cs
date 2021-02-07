@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             // grounded opens the option to jump
             if(Input.GetKeyDown("space"))
             {
-                //Debug.Log("Jumping")
+                //Debug.Log("Jumping
                 velocity.y = jumpAcceleration;
                 isJumping = true;
             }
@@ -70,23 +70,29 @@ public class PlayerMovement : MonoBehaviour
         // gets if the WASD keys are pushed down
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-
-        if(Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            velocity.y = -2*jumpAcceleration;
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             // sprinting
             //Debug.Log("Sprinting");
+            jumpAcceleration = 5f;
             speed = 5f;
         }
         else if(Input.GetKey("z"))
         {
             // cheat speed mode
             speed = 1000f;
+            jumpAcceleration = 25f;
         }
         else
         {
             // walking
             //Debug.Log("Walking");
             speed = normalSpeed;
+            jumpAcceleration = 4f;
         }
 
         // moving x (forwards, backwards, left, right)

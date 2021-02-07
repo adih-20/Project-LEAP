@@ -9,6 +9,7 @@ public class minimapcontroller : MonoBehaviour
 
     // Update is called once per frame
     public GameObject player;
+
     void Update()
     {
         float y = this.GetComponent<Camera>().transform.position.y;
