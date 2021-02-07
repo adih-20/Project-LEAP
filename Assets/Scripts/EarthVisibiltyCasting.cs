@@ -43,12 +43,12 @@ public class EarthVisibiltyCasting : MonoBehaviour
 
         if (hit.collider == null)
         {
-            Debug.Log(target.gameObject.name);
+            //Debug.Log(target.gameObject.name);
         }
 
         else
         {
-            Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log(hit.collider.gameObject.name);
         }
     }
 }
