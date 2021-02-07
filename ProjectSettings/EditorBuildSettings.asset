@@ -4,14 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Daniel.unity
-    guid: a5af975cf04bd1f438a0d6ea64e18b76
-  - enabled: 1
-    path: Assets/Scenes/main.unity
-    guid: 71189d7afce576b49b430a90c6ec90f4
-  - enabled: 1
-    path: Assets/Scenes/Daniel(Credits).unity
-    guid: 950a9fa83bbf04c4a912e9f80b244b7e
+  m_Scenes: [{enabled: 1, path: Assets/Scenes/Changxu.unity, guid: 22118584b79961e46ac160ef29cd6969},
+    {enabled: 1, path: Assets/Scenes/main.unity, guid: 71189d7afce576b49b430a90c6ec90f4},
+    {enabled: 1, path: Assets/Scenes/Aditya.unity, guid: 688b3420b088574459830d72581f0abe}]
   m_configObjects: {}
