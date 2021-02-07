@@ -34,8 +34,9 @@ public class megamap : MonoBehaviour
         {
             if(this.GetComponent<RawImage>().rectTransform.rect.width == 125)
             {
+                //make big
                 //this.GetComponent<RawImage>().rectTransform.position = new Vector2(260, 277);
-                this.GetComponent<RawImage>().rectTransform.position = new Vector2(x,y);
+                this.GetComponent<RawImage>().rectTransform.position = new Vector2(x+185,y);
                 //this.GetComponent<RawImage>().rectTransform.position = new Vector2(336,159);
                 this.GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2(425, 425);
                 isBig = true;
@@ -43,6 +44,7 @@ public class megamap : MonoBehaviour
             }
             else
             {
+                //make small
                 //this.GetComponent<RawImage>().rectTransform.position = new Vector2(430, 447);
                 this.GetComponent<RawImage>().rectTransform.position = new Vector2((float)1.75*x ,(float) 1.6*y);
                 this.GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2(125, 125);
