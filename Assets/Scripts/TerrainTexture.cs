@@ -37,11 +37,19 @@ public class TerrainTexture : MonoBehaviour
     public Text label;
     public Text units;
 
+    private float runtime;
+
+    public bool party;
+    public Text partyText;
+
     //string[] keyScale = {"", "", "", "", ""};
 
     // Start is called before the first frame update
     void Start()
     {
+        party = false;
+        partyText.text = "";
+
         terrain.materialTemplate = moon;
         scale_obj.texture = none_img;
         //keys.texture = none;
@@ -59,8 +67,11 @@ public class TerrainTexture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("1"))
+        runtime += 4*Time.deltaTime;
+        if(Input.GetKeyDown(KeyCode.F1))
         {
+            party = false;
+            partyText.text = "";
             terrain.materialTemplate = moon;
             scale_obj.texture = none_img;
             //keys.texture = none;
@@ -79,8 +90,10 @@ public class TerrainTexture : MonoBehaviour
             label.text = "";
             units.text = "";
         }
-        else if(Input.GetKeyDown("2"))
+        else if(Input.GetKeyDown(KeyCode.F2))
         {
+            party = false;
+            partyText.text = "";
             terrain.materialTemplate = height;
             scale_obj.texture = key_img;
             //keys.texture = height_key;
@@ -94,8 +107,10 @@ public class TerrainTexture : MonoBehaviour
             label.text = "HEIGHT";
             units.text = "m";
         }
-        else if(Input.GetKeyDown("3"))
+        else if(Input.GetKeyDown(KeyCode.F3))
         {
+            party = false;
+            partyText.text = "";
             terrain.materialTemplate = slope;
             scale_obj.texture = key_img;
             //keys.texture = slope_key;
@@ -108,8 +123,10 @@ public class TerrainTexture : MonoBehaviour
             label.text = "SLOPE";
             units.text = "deg";
         }
-        else if(Input.GetKeyDown("4"))
+        else if(Input.GetKeyDown(KeyCode.F4))
         {
+            party = false;
+            partyText.text = "";
             terrain.materialTemplate = elevation_angle;
             scale_obj.texture = key_img;
             //keys.texture = el_angle_key;
@@ -122,8 +139,10 @@ public class TerrainTexture : MonoBehaviour
             label.text = "ELEVATION TO EARTH";
             units.text = "deg";
         }
-        else if(Input.GetKeyDown("5"))
+        else if(Input.GetKeyDown(KeyCode.F5))
         {
+            party = false;
+            partyText.text = "";
             terrain.materialTemplate = azimuth_angle;
             scale_obj.texture = key_img;
             //keys.texture = az_angle_key;
@@ -136,7 +155,46 @@ public class TerrainTexture : MonoBehaviour
             label.text = "AZIMUTH TO EARTH";
             units.text = "deg";
         }
+        else if(Input.GetKeyDown(KeyCode.Return))
+        {
+            party = true;
+        }
+        
+        if(party)
+        {
+            partyText.text = "PARTY!";
+            scale_obj.texture = none_img;
+            upper.text = "";
+            upperMid.text = "";
+            mid.text = "";
+            lowerMid.text = "";
+            lower.text = "";
 
+            label.text = "";
+            units.text = "";
+            int cycle = (int)(runtime % 4);
+            if(cycle < 1)
+            {
+                terrain.materialTemplate = height;
+                partyText.color = Color.magenta;
+            }
+            if(cycle >= 1 && cycle < 2)
+            {
+                terrain.materialTemplate = slope;
+                partyText.color = Color.yellow;
+            }
+            else if(cycle >= 2 && cycle < 3)
+            {
+                terrain.materialTemplate = elevation_angle;
+                partyText.color = Color.cyan;
+            }
+            else if(cycle >= 3 && cycle < 4)
+            {
+                terrain.materialTemplate = azimuth_angle;
+                partyText.color = Color.green;
+            }
+        }
+        
         /*
         upper.text = keyScale[0];
         upperMid.text = keyScale[1];
