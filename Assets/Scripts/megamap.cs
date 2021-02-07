@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class megamap : MonoBehaviour
 {
@@ -12,9 +13,13 @@ public class megamap : MonoBehaviour
     public bool isBig = false;
 
     public RawImage arrow;
+    public GameObject canvas;
+    public static bool gamePaused = false;
+    public GameObject pauseMenuUI;
 
     void Start()
     {
+        pauseMenuUI.SetActive(false);
         this.GetComponent<RawImage>().rectTransform.sizeDelta = new Vector2(125, 125);
 
         float x = canvas.transform.position.x;
@@ -25,7 +30,6 @@ public class megamap : MonoBehaviour
     }
 
     // Update is called once per frame
-    public GameObject canvas;
     void Update()
     {
         float x = canvas.transform.position.x;
@@ -52,5 +56,34 @@ public class megamap : MonoBehaviour
                 arrow.GetComponent<RawImage>().texture = arr;
             }
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(gamePaused)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                ResumeGame();
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                PauseGame();
+            }
+
+            //PauseGame();
+        }
+    }
+    public void PauseGame()
+    {
+        pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        gamePaused = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void ResumeGame()
+    {
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        gamePaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

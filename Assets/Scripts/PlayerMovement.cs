@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             // grounded opens the option to jump
             if((Input.GetKeyDown("space")) || (Input.GetKeyDown("joystick button 0")))
             {
-                //Debug.Log("Jumping")
+                //Debug.Log("Jumping
                 velocity.y = jumpAcceleration;
                 isJumping = true;
             }
@@ -71,13 +71,18 @@ public class PlayerMovement : MonoBehaviour
         // gets if the WASD keys are pushed down
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        float xCheat = Input.GetAxis("HorizontalCheat");
+		float xCheat = Input.GetAxis("HorizontalCheat");
         float zCheat = Input.GetAxis("VerticalCheat");
-        //Debug.Log(x + " " + z + " " + xCheat + " " + zCheat);
+        
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            velocity.y = -2*jumpAcceleration;
+        }
+         //Debug.Log(x + " " + z + " " + xCheat + " " + zCheat);
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("JoystickRT") > 0)
         {
             // sprinting
-
+			jumpAcceleration = 5f;
             speed = 15f;
             Debug.Log(speed);
         }
@@ -85,12 +90,14 @@ public class PlayerMovement : MonoBehaviour
         {
             // cheat speed mode
             speed = 1000f;
+            jumpAcceleration = 25f;
         }
         else
         {
             // walking
             //Debug.Log("Walking");
             speed = normalSpeed;
+            jumpAcceleration = 4f;
         }
 
         // moving x (forwards, backwards, left, right)
@@ -99,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         if(x == 0 && z == 0){
           move = transform.right * xCheat + transform.forward * zCheat;
           speed = 1000f;
+		  jumpAcceleration = 25f;
         }
         controller.Move(move * speed * Time.deltaTime);
 
