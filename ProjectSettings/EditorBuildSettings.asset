@@ -4,11 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/main.unity
-    guid: 71189d7afce576b49b430a90c6ec90f4
-  - enabled: 1
-    path: Assets/Scenes/Aditya.unity
-    guid: 688b3420b088574459830d72581f0abe
+  m_Scenes: [{enabled: 1, path: Assets/Scenes/Changxu.unity, guid: 22118584b79961e46ac160ef29cd6969},
+    {enabled: 1, path: Assets/Scenes/main.unity, guid: 71189d7afce576b49b430a90c6ec90f4},
+    {enabled: 1, path: Assets/Scenes/Aditya.unity, guid: 688b3420b088574459830d72581f0abe}]
   m_configObjects: {}

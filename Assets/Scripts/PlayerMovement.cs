@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public float startLong = 0f;
 
     // starting cartesian position
-    public Vector3 startingPosition = new Vector3(19016.856f, -1013.409f, 13417.899f);
+    // public Vector3 startingPosition = new Vector3(19016.856f, -1013.409f, 13417.899f);
+    public Vector3 startingPosition = new Vector3(13411.56194f, -1014.30895f, 19008.04084f);
 
     // Start is called before the first frame update
     void Start()
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(Input.GetKey("z"))
         {
+            // cheat speed mode
             speed = 1000f;
         }
         else
