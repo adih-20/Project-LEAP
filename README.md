@@ -11,11 +11,11 @@ Development will be continued in the short-term.
 - Mission Functionality
 - (Android) VR Capability
 - Data Visualizations
- - Elevation Angle Map
- - Height Map
- - Illumination Map
- - Azimuth Angle Map
- - Terrain Slope Map
+  - Elevation Angle Map
+  - Height Map
+  - Illumination Map
+  - Azimuth Angle Map
+  - Terrain Slope Map
 - Teleportation
 - Mini/Megamaps
 
