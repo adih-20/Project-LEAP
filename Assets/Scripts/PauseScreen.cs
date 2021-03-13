@@ -8,13 +8,15 @@ public class PauseScreen : MonoBehaviour
 {
 
     public RawImage pauseMenu;
-
+	public GameObject obj;
     public bool paused = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu.rectTransform.position = new Vector2(-9999, -9999);
+		 gameObject.GetComponent<CanvasRenderer>().cull = true;
+		 foreach (CanvasRenderer r in gameObject.GetComponentsInChildren<CanvasRenderer>())
+				r.cull = true;
     }
 
     // Update is called once per frame
@@ -28,17 +30,20 @@ public class PauseScreen : MonoBehaviour
             }
             else
             {
-                pauseMenu.rectTransform.position = new Vector2(960.0f, 540.2f);
-                paused = true;
+				gameObject.GetComponent<CanvasRenderer>().cull = false;
+				foreach (CanvasRenderer r in gameObject.GetComponentsInChildren<CanvasRenderer>())
+					r.cull = false;
+				paused = true;
             }
             
         }
-        Debug.Log(pauseMenu.rectTransform.position);
     }
 
     public void Resume()
     {
-        pauseMenu.rectTransform.position = new Vector2(-9999, -9999);
+		gameObject.GetComponent<CanvasRenderer>().cull = true;
+		foreach (CanvasRenderer r in gameObject.GetComponentsInChildren<CanvasRenderer>())
+				r.cull = true;
         paused = false;
     }
 

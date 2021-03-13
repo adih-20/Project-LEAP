@@ -28,7 +28,7 @@ Development will be continued in the short-term.
 ### Installation
 Use git to clone this repository.
 ```
-git clone https://github.com/adih-20/NASA-ADC-McNeil-Unity.git
+git clone https://github.com/adih-20/McNeil_Project-LEAP.git
 ```
 Open the project in Unity.
 
